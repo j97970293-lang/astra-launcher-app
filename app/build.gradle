@@ -22,6 +22,8 @@ android {
         // signé avec la clé de debug et reste installable, mais non publiable.
         release {
             initWith signingConfigs.debug
+            // v3 : rotation de clé sur Android 9+ ; v1+v2 couvrent les anciens.
+            enableV3Signing true
             def keystoreProps = rootProject.file('keystore.properties')
             if (keystoreProps.exists()) {
                 def props = new Properties()
