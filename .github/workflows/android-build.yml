@@ -3,6 +3,7 @@ name: Android build
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -12,16 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      # Pas d'`android-actions/setup-android` : l'action exécute
+      # `sdkmanager tools`, paquet supprimé du dépôt SDK, et échoue depuis.
+      # Les images ubuntu-latest ont déjà le SDK ; on accepte les licences au
+      # mieux, et Gradle télécharge lui-même platform 35 et build-tools 35.
+      - name: Accepter les licences du SDK
+        run: |
+          SM=$(command -v sdkmanager || ls -d "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -1)
+          if [ -n "$SM" ]; then yes | "$SM" --licenses > /dev/null || true; fi
+
       - uses: gradle/actions/setup-gradle@v4
-      - run: chmod +x ./gradlew
+
       # Le wrapper fixe la version de Gradle : la CI compile comme en local.
+      - run: chmod +x ./gradlew
       - run: ./gradlew assembleDebug assembleRelease --stacktrace
+
       - uses: actions/upload-artifact@v4
         with:
           name: astra-launcher-debug
