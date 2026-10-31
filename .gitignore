@@ -1,0 +1,21 @@
+# Sorties de build
+.gradle/
+**/build/
+dist/
+
+# Binaires : jamais versionnés
+*.apk
+*.aab
+*.jar
+*.jks
+*.keystore
+
+# Le wrapper Gradle est la seule exception : il rend le build reproductible.
+!gradle/wrapper/gradle-wrapper.jar
+
+# Signature de release
+keystore.properties
+
+# Python
+__pycache__/
+*.pyc

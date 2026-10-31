@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Astra Launcher</string>
+
+    <string name="launcher_title">Astra Launcher</string>
+    <string name="launcher_subtitle">Votre espace, vos applications</string>
+    <string name="search_hint">Rechercher une application</string>
+    <string name="empty_state">Aucune application trouvée</string>
+    <string name="favorite_marker">★ %1$s</string>
+
+    <string name="settings_button" translatable="false">⚙</string>
+    <string name="settings_title">Réglages Astra</string>
+    <string name="settings_help">Touchez une application pour la lancer. Maintenez-la appuyée pour l’ajouter ou la retirer des favoris.</string>
+    <string name="clear_favorites">Effacer les favoris</string>
+    <string name="close">Fermer</string>
+</resources>

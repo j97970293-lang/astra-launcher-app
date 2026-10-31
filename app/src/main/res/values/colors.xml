@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="astra_background">#0B1020</color>
+    <color name="astra_panel">#192137</color>
+    <color name="astra_text">#F5F7FF</color>
+    <color name="astra_muted">#ACB8D7</color>
+    <color name="astra_accent">#8EA7FF</color>
+</resources>
